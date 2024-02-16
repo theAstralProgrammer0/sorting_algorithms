@@ -26,7 +26,9 @@ void print_list(const listint_t *list);
 void swap(int *a, int *b);
 void swap_with_front(listint_t *node);
 void sorted_swap(listint_t **list, listint_t *unsorted);
-int *Partition(int *a, int *start, int *end);
+int Partition(int *a, int lb, int ub, size_t size);
+void sort(int *array, int lb, int ub, size_t size);
+
 
 /** Sorting Algorithms **/
 void bubble_sort(int *array, size_t size);

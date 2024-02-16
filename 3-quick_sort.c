@@ -9,42 +9,46 @@ void swap(int *a, int *b)
         *b = temp;
 }
 
+void sort(int *array, int lb, int ub, size_t size)
+{
+	int loc;
+
+	if (lb >= ub || lb < 0)
+		return;
+
+	loc = Partition(array, lb, ub, size);
+	sort(array, lb, loc - 1, size);
+	sort(array, loc + 1, ub, size);
+}
 
 void quick_sort(int *array, size_t size)
 {
-        int start = 0;
-        int end = size - 1;
-        int *loc = NULL;
+	int lb, ub;
 
-        if (start < end)
-        {
-                loc = Partition(array, &start, &end);
-                quick_sort(array, loc - array);
-		print_array(array, size);
-                quick_sort(loc + 1, size - (loc - array) - 1);
-		print_array(array, size);
-        }
+	lb = 0;
+	ub = size - 1;
+	sort(array, lb, ub, size);
 }
 
 
-int *Partition(int *a, int *start, int *end)
+int Partition(int *array, int start, int end, size_t size)
 {
-        int lb = *start;
-        int pivot = a[lb];
-        int ub = *end;
-        int q = lb;
+        int i, pivot_idx, pivot = array[end];
 
-        while (lb < ub)
-        {
-                while (a[lb] <= pivot)
-                        lb++;
-                while (a[ub] > pivot)
-                        ub--;
-                if (lb < ub)
-                        swap(&a[lb], &a[ub]);
-        }
-        swap(&a[ub], &a[q]);
-        *start = lb;
-        *end = ub;
-        return (&a[ub]);
+	pivot_idx = start - 1;
+	for (i = start; i < end; i++)
+	{
+		if (array[i] <= pivot)
+		{
+			pivot_idx++;
+			swap(&array[i], &array[pivot_idx]);
+			if (array[i] != array[pivot_idx])
+				print_array(array, size);
+		}
+	}
+	pivot_idx++;
+	swap(&array[pivot_idx], &array[end]);
+	if (array[pivot_idx] != array[end])
+		print_array(array, size);
+        return (pivot_idx);
 }
