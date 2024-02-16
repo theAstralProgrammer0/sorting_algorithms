@@ -1,6 +1,15 @@
 #include "sort.h"
 
-
+/**
+ * swap_with_front - Aux function
+ *
+ * Description: This function is used to swap a node with the node in front of
+ * it in a dll (head node is at forefront)
+ *
+ * @node: node to be swapped with the node in front of it
+ *
+ * Return: Nothing
+ */
 void swap_with_front(listint_t *node)
 {
 	listint_t *front = NULL;
@@ -17,6 +26,18 @@ void swap_with_front(listint_t *node)
 }
 
 
+/**
+ * sorted_swap - Aux function
+ *
+ * Description: This is the function that goes through the unsorted list and
+ * swaps the current node with the one in front
+ *
+ * @list: pointer to the head pointer of the list
+ *
+ * @unsorted: pointer to the unsorted part of the list
+ *
+ * Return: Nothing
+ */
 void sorted_swap(listint_t **list, listint_t *unsorted)
 {
 	listint_t *temp = NULL;
@@ -35,10 +56,23 @@ void sorted_swap(listint_t **list, listint_t *unsorted)
 }
 
 
+/**
+ * insertion_sort - Entry point
+ *
+ * Description: This is the funtion that sorts an unsorted list into a sorted
+ * one using the insertion sort algorithm
+ *
+ * @list: pointer to the head pointer of the list
+ *
+ * Return: Nothing
+ */
 void insertion_sort_list(listint_t **list)
 {
 	listint_t *sorted = NULL;
 	listint_t *unsorted = NULL;
+
+	if (list == NULL || *list == NULL)
+		return;
 
 	sorted = *list;
 	unsorted = (*list)->next;
