@@ -1,0 +1,9 @@
+   Subnet Mask . . . . . . . . . . . : 255.255.255.0
+   Microsoft Windows [Version 10.0.22621.3155]
+      DHCPv6 IAID . . . . . . . . . . . : 704648541
+         Subnet Mask . . . . . . . . . . . : 255.255.240.0
+	    IPv4 Address. . . . . . . . . . . : 172.17.240.1(Preferred)
+	                                           8.8.4.4
+	       DNS Servers . . . . . . . . . . . : 8.8.8.8
+	          DHCP Server . . . . . . . . . . . : 10.5.50.1
+		     IPv4 Address. . . . . . . . . . . : 192.168.56.1(Preferred)
