@@ -13,14 +13,26 @@
  */
 void swap(int *a, int *b)
 {
-        int temp;
+	int temp;
 
-        temp = *a;
-        *a = *b;
-        *b = temp;
+	temp = *a;
+	*a = *b;
+	*b = temp;
 }
 
 
+/**
+ * selection_sort - Entry point
+ *
+ * Description: This function selects the minimum value of an unsorted
+ * sub-array and positions it in a sorted sub-array
+ *
+ * @array: pointer to array
+ *
+ * @size: size of the array
+ *
+ * Return: Nothing
+ */
 void selection_sort(int *array, size_t size)
 {
 	size_t i, j, min;
