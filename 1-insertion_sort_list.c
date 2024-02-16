@@ -57,7 +57,7 @@ void sorted_swap(listint_t **list, listint_t *unsorted)
 
 
 /**
- * insertion_sort - Entry point
+ * insertion_sort_list - Entry point
  *
  * Description: This is the funtion that sorts an unsorted list into a sorted
  * one using the insertion sort algorithm
