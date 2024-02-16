@@ -13,11 +13,11 @@
  */
 void swap(int *a, int *b)
 {
-        int temp;
+	int temp;
 
-        temp = *a;
-        *a = *b;
-        *b = temp;
+	temp = *a;
+	*a = *b;
+	*b = temp;
 }
 
 
@@ -35,11 +35,11 @@ void swap(int *a, int *b)
  *
  * @size: size of array
  *
- * Return: (int) pivot_idx 
+ * Return: (int) pivot_idx
  */
 int Partition(int *array, int start, int end, size_t size)
 {
-        int i, pivot_idx, pivot = array[end];
+	int i, pivot_idx, pivot = array[end];
 
 	pivot_idx = start - 1;
 	for (i = start; i < end; i++)
@@ -56,7 +56,8 @@ int Partition(int *array, int start, int end, size_t size)
 	swap(&array[pivot_idx], &array[end]);
 	if (array[pivot_idx] != array[end])
 		print_array(array, size);
-        return (pivot_idx);
+
+	return (pivot_idx);
 }
 
 
