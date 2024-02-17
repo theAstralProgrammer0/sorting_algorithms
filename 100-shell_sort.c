@@ -75,8 +75,7 @@ void shell_sort(int *array, size_t size)
 
 	gap_p = &gap;
 
-	do
-	{
+	do {
 		if (flag == 0 && (gap <= (int)size - 1))
 		{
 			inc_gap(gap_p);
@@ -86,7 +85,7 @@ void shell_sort(int *array, size_t size)
 		dec_gap(gap_p);
 		if (gap == 0)
 			off = 0;
-		
+
 		for (j = gap; j < (int)size; j++)
 		{
 			for (i = j - gap; i >= 0; i -= gap)
