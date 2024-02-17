@@ -6,6 +6,8 @@
  * Description: This is a function that swaps two nodes in a dll. The node
  * passed in is swapped with the one at its back (head direction is forward)
  *
+ * @list: pointer to the head pointer of the dll
+ *
  * @node: Subject node
  *
  * Return: Nothing
