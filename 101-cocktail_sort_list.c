@@ -38,17 +38,17 @@ void swap_with_back(listint_t *node)
  */
 void swap_with_front(listint_t *node)
 {
-        listint_t *front = NULL;
+	listint_t *front = NULL;
 
-        front = node->prev;
-        front->next = node->next;
-        node->prev = front->prev;
-        if (front->prev)
-                front->prev->next = node;
-        if (node->next)
-                node->next->prev = front;
-        front->prev = node;
-        node->next = front;
+	front = node->prev;
+	front->next = node->next;
+	node->prev = front->prev;
+	if (front->prev)
+		front->prev->next = node;
+	if (node->next)
+		node->next->prev = front;
+	front->prev = node;
+	node->next = front;
 }
 
 
@@ -69,12 +69,11 @@ void cocktail_sort_list(listint_t **list)
 
 	if (*list == NULL || list == NULL)
 		return;
-
 	temp = *list;
 	while (1)
 	{
 		sorted = 1;
-		while(temp->next)
+		while (temp->next)
 		{
 			swapped = 0;
 			if (temp->n > temp->next->n)
