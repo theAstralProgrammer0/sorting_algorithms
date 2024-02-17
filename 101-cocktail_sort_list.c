@@ -10,7 +10,7 @@
  *
  * Return: Nothing
  */
-void swap_with_back(listint_t *node)
+void swap_with_back(listint_t **list, listint_t *node)
 {
 	listint_t *back = NULL;
 
@@ -23,6 +23,8 @@ void swap_with_back(listint_t *node)
 		node->prev->next = back;
 	back->next = node;
 	node->prev = back;
+	if (back->prev == NULL)
+		*list = back;
 }
 
 
@@ -78,7 +80,7 @@ void cocktail_sort_list(listint_t **list)
 			swapped = 0;
 			if (temp->n > temp->next->n)
 			{
-				swap_with_back(temp);
+				swap_with_back(list, temp);
 				print_list(*list);
 				sorted = 0;
 				swapped = 1;
