@@ -25,6 +25,7 @@ void print_array(const int *array, size_t size);
 void print_list(const listint_t *list);
 void swap(int *a, int *b);
 void swap_with_front(listint_t *node);
+void swap_with_back(listint_t *node);
 void sorted_swap(listint_t **list, listint_t *unsorted);
 int Partition(int *a, int lb, int ub, size_t size);
 void sort(int *array, int lb, int ub, size_t size);
@@ -38,6 +39,6 @@ void bubble_sort(int *array, size_t size);
 void insertion_sort_list(listint_t **list);
 void selection_sort(int *array, size_t size);
 void quick_sort(int *array, size_t size);
-
+void cocktail_sort_list(listint_t **list);
 
 #endif
