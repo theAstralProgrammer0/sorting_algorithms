@@ -6,6 +6,8 @@ void counting_sort(int *array, size_t size)
 	int i, k, *count = NULL, *sorted = NULL;
 
 	k = 0;
+	if (array == NULL)
+		return;
 
 	for (i = 0; i < (int)size; i++)
 	{
@@ -26,8 +28,8 @@ void counting_sort(int *array, size_t size)
 	
 	for (i = 1 ; i <= k; i++)
 		count[i] += count[i - 1];
-
 	print_array(count, k + 1);
+	
 	for (i = (int)(size - 1); i >= 0; i--)
 		sorted[--count[array[i]]] = array[i];
 
