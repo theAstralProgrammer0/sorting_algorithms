@@ -6,7 +6,7 @@ void counting_sort(int *array, size_t size)
 	int i, k, *count = NULL, *sorted = NULL;
 
 	k = 0;
-	if (array == NULL)
+	if (array == NULL || size == 0)
 		return;
 
 	for (i = 0; i < (int)size; i++)
