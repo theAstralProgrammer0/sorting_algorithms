@@ -3,7 +3,7 @@
 
 void counting_sort(int *array, size_t size)
 {
-	int i, k, *count = NULL, sorted[SIZE];
+	int i, k, *count = NULL, *sorted = NULL;
 
 	k = 0;
 
@@ -17,6 +17,10 @@ void counting_sort(int *array, size_t size)
 	if (count == NULL)
 		return;
 
+	sorted = (int *)calloc(size, sizeof(int));
+	if (sorted == NULL)
+		return;
+	
 	for (i = 0; i < (int)size; i++)
 		++count[array[i]];
 	
@@ -34,4 +38,5 @@ void counting_sort(int *array, size_t size)
 	print_array(array, size);
 
 	free(count);
+	free(sorted);
 }
