@@ -90,8 +90,6 @@ void cocktail_sort_list(listint_t **list)
 			if (!swapped)
 				temp = temp->next;
 		}
-		if (sorted)
-			break;
 		while (temp->prev)
 		{
 			swapped = 0;
