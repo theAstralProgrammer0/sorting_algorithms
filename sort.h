@@ -32,7 +32,11 @@ void sort(int *array, int lb, int ub, size_t size);
 void inc_gap(int *gap_p);
 void dec_gap(int *gap_p);
 void shell_sort(int *array, size_t size);
-
+void merge(int *array, int *sorted, int lb, int mid, int ub);
+void msort(int *array, int *sorted, int lb, int ub);
+/*void copy_array(int *array, int lb, int ub, int *sorted);*/
+/*void msort(int *array, int lb, int ub, int *sorted);*/
+/*void merge(int *sorted, int lb, int mid, int ub, int *array);*/
 
 /** Sorting Algorithms **/
 void bubble_sort(int *array, size_t size);
@@ -41,5 +45,6 @@ void selection_sort(int *array, size_t size);
 void quick_sort(int *array, size_t size);
 void cocktail_sort_list(listint_t **list);
 void counting_sort(int *array, size_t size);
+void merge_sort(int *array, size_t size);
 
 #endif
