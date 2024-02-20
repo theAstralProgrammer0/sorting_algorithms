@@ -91,7 +91,10 @@ void counting_sort_pos(int *array, size_t size, int pos)
 
 	sorted = (int *)calloc(size, sizeof(int));
 	if (!sorted)
+	{
+		free(count);
 		return;
+	}
 
 
 	for (i = 0; i < (int)size; i++)
@@ -102,4 +105,6 @@ void counting_sort_pos(int *array, size_t size, int pos)
 		sorted[--count[(array[i] / pos) % 10]] = array[i];
 	for (i = 0; i < (int)size; i++)
 		array[i] = sorted[i];
+	free(count);
+	free(sorted);
 }
