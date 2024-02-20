@@ -1,12 +1,12 @@
 #include "sort.h"
 void counting_sort_pos(int *array, size_t size, int pos);
 int counter(int count, int temp);
-int digit_counter(int *array, int idx, int counted, int digit_max, size_t size);
+int digit_counter(int *array, int id, int counted, int digit_max, size_t size);
 
 
 
 /**
- * counting_sort - Entry point
+ * radix_sort - Entry point
  *
  * Description: This is a sorting algorithm that performs sorting by counting
  * the frequency of numbers and  arranging them in an array using keys to
@@ -36,6 +36,18 @@ void radix_sort(int *array, size_t size)
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wreturn-type"
+
+/**
+ * counter - Aux function
+ *
+ * Description: Tis function counts
+ *
+ * @count: the count
+ *
+ * @temp: this the temp
+ *
+ * Return: (int) count
+ */
 int counter(int count, int temp)
 {
 	if (temp == 0)
@@ -54,25 +66,44 @@ int counter(int count, int temp)
  *
  * @array: pointer to the array
  *
+ * @id: index
+ *
+ * @counted: countted digits
+ *
+ * @digit_max: max number of digits in the array
+ *
  * @size: size of the array
  *
  * Return: (int) digit_max
  */
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wreturn-type"
-int digit_counter(int *array, int idx, int counted, int digit_max, size_t size)
+int digit_counter(int *array, int id, int counted, int digit_max, size_t size)
 {
-	if (idx > (int)size)
+	if (id > (int)size)
 		return (digit_max);
 
 	if (digit_max < counted)
 		digit_max = counted;
 
-	counted = counter(0, array[idx]);
-	digit_counter(array, idx + 1, counted, digit_max, size);
+	counted = counter(0, array[id]);
+	digit_counter(array, id + 1, counted, digit_max, size);
 }
 #pragma GCC diagnostic pop
 
+/**
+ * counting_sort_pos - Aux funtion
+ *
+ * Description: This function is a custom count sort
+ *
+ * @array: pointer to the array
+ *
+ * @size: size of the array
+ *
+ * @pos: position of the place value
+ *
+ * Return: Nothing
+ */
 void counting_sort_pos(int *array, size_t size, int pos)
 {
 	int i, k = 0, *count = NULL, *sorted = NULL;
