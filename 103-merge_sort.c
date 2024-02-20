@@ -1,47 +1,54 @@
 #include "sort.h"
 
-void copy_array(int *array, int lb, int ub, int *sorted)
+void merge_sort(int *array, size_t size)
 {
-	int k;
+	int lb, ub, *sorted = NULL;
 
-	for (k = lb; k < ub; k++)
-		sorted[k] = array[k];
+	lb = 0;
+	ub = (int)size - 1;
+
+	sorted = (int *)calloc(size, sizeof(int));
+	if (sorted == NULL)
+		return;
+
+	msort(array, sorted, lb, ub);
 }
 
-
-void msort(int *array, int lb, int ub, int *sorted)
+void msort(int *array, int *sorted, int lb, int ub)
 {
 	int mid;
 
-	if ((ub - lb) <= 1)
+	if (lb >= ub)
 		return;
 
-	mid = (ub + lb) / 2;
+	mid = (lb + ub) / 2;
 
-	msort(array, lb, mid, sorted);
-	msort(array, mid + 1, ub, sorted);
-	
-	merge(sorted, lb, mid, ub, array);
+	msort(array, sorted, lb, mid);
+		
+	msort(array, sorted, mid + 1, ub);
+
+	merge(array, sorted, lb, mid, ub);	
 }
 
-void merge(int *sorted, int lb, int mid, int ub, int *array)
+void merge(int *array, int *sorted, int lb, int mid, int ub)
 {
 	int i, j, k;
 
 	i = lb;
 	j = mid + 1;
+	k = lb;
 
 	printf("Merging...\n");
 
 	printf("[Left]: ");
-	print_array(&array[lb], (mid - lb) + 1);
+	print_array(&array[lb], mid - lb + 1);
 
 	printf("[Right]: ");
 	print_array(&array[mid + 1], ub - (mid + 1) + 1);
-
-	for (k = lb; k < ub; k++)
+	
+	while (i <= mid && j <= ub)
 	{
-		if (i < mid && (j >= ub || array[i] <= array[j]))
+		if (array[i] <= array[j])
 		{
 			sorted[k] = array[i];
 			i++;
@@ -51,20 +58,29 @@ void merge(int *sorted, int lb, int mid, int ub, int *array)
 			sorted[k] = array[j];
 			j++;
 		}
+		k++;
 	}
-
+	if (i > mid)
+	{
+		while (j <= ub)
+		{
+			sorted[k] = array[j];
+			j++;
+			k++;
+		}
+	}
+	else
+	{
+		while (i <= mid)
+		{
+			sorted[k] = array[i];
+			i++;
+			k++;
+		}
+	}
+	for (k = lb; k <= ub; k++)
+		array[k] = sorted[k];
 	printf("[Done]: ");
 	print_array(&array[lb], ub - lb + 1);
-}
-
-void merge_sort(int *array, size_t size)
-{
-	int *sorted = NULL;
-
-	sorted = (int *) calloc(size, sizeof(int));
-	if (!sorted)
-		return;
-
-	copy_array(array, 0, size, sorted);
-	msort(array, 0, size - 1, sorted);
+	/*print_array(&sorted[lb], ub - lb + 1);*/
 }

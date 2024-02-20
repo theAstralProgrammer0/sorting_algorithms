@@ -32,13 +32,10 @@ void sort(int *array, int lb, int ub, size_t size);
 void inc_gap(int *gap_p);
 void dec_gap(int *gap_p);
 void shell_sort(int *array, size_t size);
-void merge(int *array, int *sorted, int lb, int mid, int ub);
-void msort(int *array, int *sorted, int lb, int ub);
 void radix_sort(int *array, size_t size);
-/*void copy_array(int *array, int lb, int ub, int *sorted);*/
-/*void msort(int *array, int lb, int ub, int *sorted);*/
-/*void merge(int *sorted, int lb, int mid, int ub, int *array);*/
-
+void copy_array(int *array, int lb, int ub, int *sorted);
+void msort(int *array, int *sorted, int lb, int ub);
+void merge(int *array, int *sorted, int lb, int mid, int ub);
 /** Sorting Algorithms **/
 void bubble_sort(int *array, size_t size);
 void insertion_sort_list(listint_t **list);
