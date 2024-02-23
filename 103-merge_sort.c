@@ -1,36 +1,45 @@
 #include "sort.h"
 
+void copy_array(int *array, int *sorted, int lb, int ub);
+void split(int *array, int *sorted, int lb, int ub);
+void print_sub_array(const int *array, int lb, int ub);
+
 void merge_sort(int *array, size_t size)
 {
 	int lb, ub, *sorted = NULL;
 
-	lb = 0;
-	ub = (int)size - 1;
-
-	sorted = (int *)calloc(size, sizeof(int));
-	if (sorted == NULL)
+	sorted = (int *) calloc(size, sizeof(int));
+	if (!sorted)
 		return;
 
-	msort(array, sorted, lb, ub);
+	lb = 0;
+	ub = size - 1;
+
+	split(array, sorted, lb, ub);
+	free(sorted);
 }
 
-void msort(int *array, int *sorted, int lb, int ub)
+void split(int *array, int *sorted, int lb, int ub)
 {
 	int mid;
 
-	if (lb >= ub)
+	if ((ub - lb) >= 1)
+	{
+		if ((ub + lb) % 2 == 0)
+			mid = ((ub + lb) / 2) - 1;
+		else
+			mid = (ub + lb) / 2;
+
+		split(array, sorted, lb, mid);
+		split(array, sorted, mid + 1, ub);
+		merge(array, sorted, lb, mid, ub);
+	}
+	else
 		return;
-
-	mid = (lb + ub) / 2;
-
-	msort(array, sorted, lb, mid);
-		
-	msort(array, sorted, mid + 1, ub);
-
-	merge(array, sorted, lb, mid, ub);	
 }
 
-void merge(int *array, int *sorted, int lb, int mid, int ub)
+
+void merge( int *array, int *sorted, int lb, int mid, int ub)
 {
 	int i, j, k;
 
@@ -39,16 +48,16 @@ void merge(int *array, int *sorted, int lb, int mid, int ub)
 	k = lb;
 
 	printf("Merging...\n");
-
+	
 	printf("[Left]: ");
-	print_array(&array[lb], mid - lb + 1);
+	print_sub_array(&array[lb], lb, mid);
 
 	printf("[Right]: ");
-	print_array(&array[mid + 1], ub - (mid + 1) + 1);
-	
+	print_sub_array(&array[mid + 1], mid + 1, ub);
+
 	while (i <= mid && j <= ub)
 	{
-		if (array[i] <= array[j])
+		if (array[i] < array[j])
 		{
 			sorted[k] = array[i];
 			i++;
@@ -60,27 +69,53 @@ void merge(int *array, int *sorted, int lb, int mid, int ub)
 		}
 		k++;
 	}
-	if (i > mid)
+	while (i <= mid && j > ub)
 	{
-		while (j <= ub)
-		{
-			sorted[k] = array[j];
-			j++;
-			k++;
-		}
+		sorted[k] = array[i];
+		i++;
+		k++;
 	}
-	else
+	while (j <= ub && i > mid)
 	{
-		while (i <= mid)
-		{
-			sorted[k] = array[i];
-			i++;
-			k++;
-		}
+		sorted[k] = array[j];
+		j++;
+		k++;
 	}
+
+	printf("[Done]: ");
+	print_sub_array(&sorted[lb], lb, ub);
+
+	copy_array(array, sorted, lb, ub);
+}
+
+void copy_array(int *array, int *sorted, int lb, int ub)
+{
+	int k;
+
 	for (k = lb; k <= ub; k++)
 		array[k] = sorted[k];
-	printf("[Done]: ");
-	print_array(&array[lb], ub - lb + 1);
-	/*print_array(&sorted[lb], ub - lb + 1);*/
+}
+
+
+/**
+ * print_array - Prints an array of integers
+ *
+ * @array: The array to be printed
+ * @size: Number of elements in @array
+ */
+void print_sub_array(const int *array, int lb, int ub)
+{
+    int i, size;
+
+    size = ub - lb + 1;
+
+    i = 0;
+    while (array && i < size)
+    {
+        if (i > 0)
+            printf(", ");
+        printf("%d", array[i]);
+        ++i;
+    }
+    printf("\n");
 }

@@ -32,7 +32,7 @@ void sort(int *array, int lb, int ub, size_t size);
 void inc_gap(int *gap_p);
 void dec_gap(int *gap_p);
 void shell_sort(int *array, size_t size);
-void copy_array(int *array, int lb, int ub, int *sorted);
+void copy_array(int *array, int *sorted, int lb, int ub);
 void msort(int *array, int *sorted, int lb, int ub);
 void merge(int *array, int *sorted, int lb, int mid, int ub);
 

@@ -75,7 +75,7 @@ void merge( int *array, int *sorted, int lb, int mid, int ub)
 		i++;
 		k++;
 	}
-	while (j <= mid && i > mid)
+	while (j <= ub && i > mid)
 	{
 		sorted[k] = array[j];
 		j++;
