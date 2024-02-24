@@ -49,10 +49,10 @@ void merge( int *array, int *sorted, int lb, int mid, int ub)
 
 	printf("Merging...\n");
 	
-	printf("[Left]: ");
+	printf("[left]: ");
 	print_sub_array(&array[lb], lb, mid);
 
-	printf("[Right]: ");
+	printf("[right]: ");
 	print_sub_array(&array[mid + 1], mid + 1, ub);
 
 	while (i <= mid && j <= ub)
